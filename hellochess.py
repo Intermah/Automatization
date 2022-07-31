@@ -1,45 +1,30 @@
-from pynput.keyboard import Key, Controller
+#pip3 install keyboard
+import keyboard
 import time
 import os
-import datetime
-
+from datetime import datetime
+from datetime import timedelta
 
 def hellochess(): 
-    os.system("open -a TextEdit")
-    time.sleep(2)
-    keyboard = Controller()
+    os.system("open -a Telegram")
     time.sleep(4)
-    keyboard.press(Key.down)
-    keyboard.release(Key.down)
-    keyboard.press(Key.enter)
-    keyboard.release(Key.enter)
+    keyboard.press_and_release('Down Arrow')
+    keyboard.press_and_release('Enter')
     time.sleep(1)
-    keyboard.press('L')
-    keyboard.release('L')
-    keyboard.press('G')
-    keyboard.release('G')
-    keyboard.press(' ')
-    keyboard.release(' ')
-    keyboard.press('C')
-    keyboard.release('C')
-    keyboard.press('H')
-    keyboard.release('H')
-    keyboard.press('E')
-    keyboard.release('E')
-    keyboard.press('S')
-    keyboard.release('S')
-    keyboard.press('S')
-    keyboard.release('S')
-    keyboard.press(Key.enter)
-    keyboard.release(Key.enter)
-    time.sleep(3)
+    keyboard.write("Man, LG play some chess")
+    keyboard.press_and_release('Enter')
+    time.sleep(4)
     os.system("pkill Telegram")
 
-
-day = datetime.timedelta(1)
-starttime = time.time() 
-totaltime = round((time.time() - starttime), 2)
+#This variable defines the period through what messages will be sent
+period = 1
+curr = time.time()
+const exec_time = curr + timedelta(minutes=period)
 
 while True:
-    if totaltime % day.total_seconds() == 0:
+    if curr != exec_time:
+        time.sleep(1)
+        curr = time.time()
+    else:    
         hellochess()
+    
